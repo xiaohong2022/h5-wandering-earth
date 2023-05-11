@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    font-style: normal;
+    outline: none;
+}
+
+@font-face {
+    font-family: 'DIN 1451 LT W06 Mittelschrift';
+    font-style: normal;
+    font-weight: 100;
+    src: url(../font/Mittelschrift.otf)
+}
+
+@font-face {
+    font-family: '字魂59号-创粗黑';
+    font-style: normal;
+    font-weight: 100;
+    src: url(../font/字魂59号-创粗黑.ttf)
+}
+
+div#app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.app-stage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app-stage-role {
+    display: flex;
+    flex-direction: column;
+    font-size: 200%;
+    user-select: none;
+}
+
+.app-stage-role-top {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.app-stage-role-top-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-stage-role-top-left-left {
+    text-align: right;
+}
+
+.app-stage-role-top-left-left span {
+    border-left: solid 5px #e91c00;
+    padding-left: 5px;
+    font-family: '字魂59号-创粗黑';
+}
+
+
+.app-stage-role-bottom {
+    border-left: solid 5px #e91c00;
+    padding-left: 8px;
+    font-family: "DIN 1451 LT W06 Mittelschrift";
+    font-size: 60%;
+}
+
+.app-stage-role-top-right {
+    font-family: '字魂59号-创粗黑';
+}
+
+.app-stage-role-top-center {
+    font-family: "DIN 1451 LT W06 Mittelschrift";
+    font-size: 200%;
+    line-height: 100%;
+    margin: 0px 8px;
+    color: #e91c00
+}
+
+.app-stage-role-top-left-top {
+    font-family: '字魂59号-创粗黑';
+}
+
+.app-canedit {
+    position: relative;
+    cursor: pointer;
+}
+
+.app-canedit:after {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4800;
+    padding: 8px;
+    width: max-content;
+    height: 14px;
+    line-height: 14px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .8);
+    color: #fff;
+    content: "点击编辑";
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity .2s, top .2s;
+    user-select: none;
+    pointer-events: none;
+    font-family: initial;
+}
+
+.app-canedit:hover:after {
+    top: -30px;
+    opacity: 1
+}
+
+.app-canedit:hover {
+    opacity: .7;
+}
+
+.app-editing {
+    text-shadow: 0 0 10px #aaa;
+}
+
+.app-shade {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.swal-modal {
+    width: unset;
+    min-width: 478px;
+}
