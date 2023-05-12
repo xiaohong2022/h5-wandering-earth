@@ -11,6 +11,7 @@
     });
     !function () {
         document.querySelectorAll(".app-canedit").forEach(e => {
+            e.default = e.innerText;
             e.onclick = function () {
                 var j = false;
                 var f = document.createElement("input");
@@ -45,17 +46,16 @@
                 e.classList.add("app-editing");
                 document.body.append(i, f);
                 f.focus();
-                function k({ target }) {
-                    if (target === e) return;
-                    if (target === f) return;
+                f.addEventListener("blur", function () {
                     if (j) return;
                     j = true;
+                    if (!f.value) {
+                        e.innerText = e.default
+                    };
                     i.remove();
                     f.remove();
                     e.classList.remove("app-editing");
-                };
-                document.body.addEventListener("click", k);
-                document.body.addEventListener("contextmenu", k);
+                });
             }
         })
     }();
@@ -193,11 +193,12 @@
                             icon: "info",
                             buttons: false,
                             title: "关于",
-                            text: `《流浪地球2》倒计时制作 v1.0.0
+                            text: `《流浪地球2》倒计时制作 v1.0.2
                             
                             Copyright (c) 2023 xiaohong2022
                             
                             特别鸣谢：
+                            @CodeKpy 提供仓库名
                             https://www.bilibili.com/read/cv21439547（提供字体）
                             https://sweetalert.js.org/（提供弹窗）
                             https://html2canvas.hertzen.com/（提供图片转换）`
@@ -217,5 +218,5 @@
             }
             return false;
         }
-    }()
+    }();
 }();
