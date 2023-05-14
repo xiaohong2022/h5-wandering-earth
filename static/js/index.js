@@ -28,6 +28,7 @@
                     f.style.color = h.color;
                     f.style.fontSize = h.fontSize;
                     f.style.fontFamily = h.fontFamily;
+                    f.style.textTransform = h.textTransform;
                     f.style.padding = "0";
                     f.style.background = "none";
                     f.style.border = "none";
@@ -193,7 +194,7 @@
                             icon: "info",
                             buttons: false,
                             title: "关于",
-                            text: `《流浪地球2》倒计时制作 v1.0.2
+                            text: `《流浪地球2》倒计时制作 v1.0.3
                             
                             Copyright (c) 2023 xiaohong2022
                             

@@ -68,6 +68,7 @@ div#app {
     padding-left: 8px;
     font-family: "DIN 1451 LT W06 Mittelschrift";
     font-size: 60%;
+    text-transform: uppercase;
 }
 
 .app-stage-role-top-right {
