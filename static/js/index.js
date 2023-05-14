@@ -1,4 +1,5 @@
 !function () {
+    const version = "v1.0.5";
     setInterval(() => {
         var a = document.querySelector(".app-stage-role-top-left-left span").offsetLeft;
         var b = document.querySelector(".app-stage-role").offsetLeft;
@@ -61,6 +62,32 @@
         })
     }();
     !function () {
+        function w() {
+            return {
+                v: `${version}`,
+                t: Date.now(),
+                d: [].slice.call(document.querySelectorAll(".app-canedit")).map(v => v.innerText)
+            };
+        };
+        function t(o) {
+            var a = document.querySelectorAll(".app-canedit");
+            if (!o) return false;
+            if (typeof o !== "object") return false;
+            if (Array.isArray(o)) return false;
+            if (Object.keys(o).length !== 3) return false;
+            if (!o.v) return false;
+            if (!o.t) return false;
+            if (!o.d) return false;
+            if (typeof o.v !== "string") return false;
+            if (typeof o.t !== "number") return false;
+            if (typeof o.d !== "object") return false;
+            if (!Array.isArray(o.d)) return false;
+            if (o.d.length !== a.length) return false;
+            a.forEach((v, i) => {
+                v.innerText = o.d[i];
+            });
+            return true;
+        };
         var b = {
             async alert(w = "", f = () => { }) {
                 await swal("", w, {
@@ -114,7 +141,7 @@
         };
         var a = document.querySelector("#app");
         a.oncontextmenu = function () {
-            b.select("菜单", ["转换为图片", "关于"], async function (r) {
+            b.select("菜单", ["转换为图片", "文件", "关于"], async function (r) {
                 if (r !== null) {
                     if (r === 0) {
                         const canvas = await html2canvas(
@@ -189,12 +216,62 @@
                                 })
                             }
                         })
+                    } else if (r === 1) {
+                        b.select("文件", ["保存", "打开"], function (r) {
+                            if (r === 0) {
+                                const blob = new Blob([JSON.stringify(w())])
+                                const urlOBj = (URL || webkitURL || window.URL || window.webkitURL || window)
+                                let url = urlOBj.createObjectURL(blob);
+                                var s = document.createElement("a");
+                                s.download = "新作品.xhwdeh5";
+                                s.href = url;
+                                s.click();
+                                urlOBj.revokeObjectURL(url);
+                            } else if (r === 1) {
+                                var s = document.createElement("input");
+                                s.type = "file";
+                                s.accept = ".xhwdeh5";
+                                s.onchange = function () {
+                                    var file = s.files[0];
+                                    var fileread = new FileReader();
+                                    fileread.onload = () => {
+                                        var v = fileread.result;
+                                        try {
+                                            if (v) {
+                                                var u = t(JSON.parse(v));
+                                                if (!u) {
+                                                    swal({
+                                                        icon: "error",
+                                                        buttons: [null, "确认"],
+                                                        title: "打开失败！",
+                                                    })
+                                                }
+                                            } else {
+                                                swal({
+                                                    icon: "error",
+                                                    buttons: [null, "确认"],
+                                                    title: "打开失败！",
+                                                })
+                                            }
+                                        } catch (e) {
+                                            swal({
+                                                icon: "error",
+                                                buttons: [null, "确认"],
+                                                title: "打开失败！",
+                                            })
+                                        }
+                                    };
+                                    fileread.readAsText(file, "UTF-8");
+                                };
+                                s.click()
+                            }
+                        });
                     } else {
                         swal({
                             icon: "info",
                             buttons: false,
                             title: "关于",
-                            text: `《流浪地球2》倒计时制作 v1.0.3
+                            text: `《流浪地球2》倒计时制作 ${version}
                             
                             Copyright (c) 2023 xiaohong2022
                             
