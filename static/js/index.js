@@ -1,15 +1,17 @@
 !function () {
-    const version = "v1.0.5";
-    setInterval(() => {
+    const version = "v1.0.6";
+    function update() {
         var a = document.querySelector(".app-stage-role-top-left-left span").offsetLeft;
         var b = document.querySelector(".app-stage-role").offsetLeft;
         var c = document.querySelector(".app-stage-role-bottom");
         c.style.marginLeft = `${a - b}px`
-    });
-    setInterval(() => {
-        var a = document.querySelector(".app-stage-role-top-left-left span");
-        a.style.lineHeight = `${a.offsetHeight}px`
-    });
+
+        var d = document.querySelector(".app-stage-role-top-left-left span");
+        d.style.lineHeight = `${d.offsetHeight}px`
+    }
+    window.addEventListener('DOMContentLoaded', update);
+    window.addEventListener("resize", update);
+    update();
     !function () {
         document.querySelectorAll(".app-canedit").forEach(e => {
             e.default = e.innerText;
@@ -37,11 +39,13 @@
                     f.style.left = `${a}px`;
                     f.style.width = `${c}px`;
                     f.style.height = `${d}px`;
+                    update();
                 };
                 f.value = e.innerText;
                 g();
                 f.oninput = function () {
                     e.innerText = f.value;
+                    g();
                     setTimeout(g);
                     setTimeout(g, 50);
                 };

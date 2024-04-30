@@ -90,6 +90,7 @@ div#app {
 .app-canedit {
     position: relative;
     cursor: pointer;
+    white-space: pre;
 }
 
 .app-canedit:after {
