@@ -150,19 +150,40 @@
             b.select("菜单", ["转换为图片", "文件", "关于"], async function (r) {
                 if (r !== null) {
                     if (r === 0) {
-                        const canvas = await html2canvas(
-                            document.querySelector(".app-stage-role"),
-                            {
-                                scale: 1,
-                                allowTaint: true,
-                                useCORS: true,
-                                logging: false,
-                            }
-                        );
+                        let canvas;
+
+                        var div = document.createElement("div");
+                        div.className = "image-preview"
+
+                        var label = document.createElement("label");
+                        label.innerHTML = `<input type="checkbox" checked> 透明背景`;
+                        var checkbox = label.querySelector("input");
+
                         var img = document.createElement("img");
-                        img.src = canvas.toDataURL();
+                        const refresh = async () => {
+                            canvas = await html2canvas(
+                                document.querySelector(".app-stage-role"),
+                                {
+                                    scale: 1,
+                                    allowTaint: true,
+                                    useCORS: true,
+                                    logging: false,
+                                    backgroundColor: checkbox.checked ? null : "#ffffff"
+                                }
+                            );
+                            img.src = canvas.toDataURL();
+                        }
+
+                        checkbox.onchange = () => {
+                            refresh();
+                        }
+
+                        div.append(img, label);
+
+                        await refresh();
+
                         swal({
-                            content: img,
+                            content: div,
                             buttons: {
                                 confirm: "下载",
                                 0: {

@@ -140,3 +140,10 @@ div#app {
     width: unset;
     min-width: 478px;
 }
+
+.image-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
