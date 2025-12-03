@@ -1,15 +1,17 @@
 !function () {
     const version = "v1.0.6";
     function update() {
-        var a = document.querySelector(".app-stage-role-top-left-left span").offsetLeft;
-        var b = document.querySelector(".app-stage-role").offsetLeft;
+        var a = document.querySelector(".app-stage-role-top-left-left span").getBoundingClientRect().left;
+        var b = document.querySelector(".app-stage-role").getBoundingClientRect().left;
         var c = document.querySelector(".app-stage-role-bottom");
         c.style.marginLeft = `${a - b}px`
 
         var d = document.querySelector(".app-stage-role-top-left-left span");
         d.style.lineHeight = `${d.offsetHeight}px`
     }
-    window.addEventListener('DOMContentLoaded', update);
+    window.addEventListener('DOMContentLoaded', () => {
+        requestAnimationFrame(update);
+    });
     window.addEventListener("resize", update);
     update();
     !function () {
