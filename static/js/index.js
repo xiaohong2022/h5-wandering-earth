@@ -1,5 +1,5 @@
 !function () {
-    const version = "v1.0.6";
+    const version = "v1.0.8";
     function update() {
         var a = document.querySelector(".app-stage-role-top-left-left span").getBoundingClientRect().left;
         var b = document.querySelector(".app-stage-role").getBoundingClientRect().left;
